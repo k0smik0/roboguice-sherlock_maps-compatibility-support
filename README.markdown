@@ -1,25 +1,40 @@
-# roboguice-sherlock
+# roboguice-sherlock Library with maps-compatibility support
 
-**RoboGuice classes for use with ActionBarSherlock**
+This is a fork of roboguice-sherlock.
 
-Both RoboGuice and ActionBarSherlock require custom base classes for Activities
-and Fragments, and as Java doesn't permit diamond-inheritance, or the [traits](http://www.scala-lang.org/node/126)
-of Scala, this project provides custom RoboGuice classes that extend the corresponding
-ones from ActionBarSherlock.
+It allows you can use FragmentMap in your roboguiced-sherlocked code.
 
-[JakeWharton](https://github.com/JakeWharton) provided the first example of how
-to do this with a [RoboSherlockActivity](https://github.com/JakeWharton/ActionBarSherlock/blob/4.0.0/samples/roboguice/src/com/actionbarsherlock/sample/roboguice/RoboSherlockActivity.java):
-it's a simple drudge process of taking the source for the RoboGuice class and
-changing the activity/fragment named in the `extends` declaration to the
-corresponding ActionBarSherlock class - there are no further complications
-I've encountered so far.
+## Details:
 
-All classes in this project have the same name as the RoboGuice ones, with 'Sherlock'
-inserted after the 'Robo', ie `Robo**Sherlock**ListFragment`. The package is also changed
-to `com.github.rtyley.android.sherlock.roboguice.**`.
+You know how actionbarsherlock provides actionbar compatibility for android < 4.x  
+and you know how roboguice improves your developing providing a beautiful IoC implementation  
+    
+so, you would merge together: et voilà roboguice-sherlock  
+(and a new project/package is mandatory because java doesn't permits class multiple inheritance - see [here][1]) 
 
-## Used in...
+but no ones of these three allows to use fragmentmap or a kind of fragmentmapactivity   
+(remembering that official [fragment support library][2] does not provide map support)
 
-The open-source [Gaug.es](https://play.google.com/store/apps/details?id=com.github.mobile.gauges)
-web analytics app by GitHub.
+### this solution:
+this library forks original roboguice-sherlock, and provides support for fragment compatibility as for maps
+  
+it is possible using a fragment support library fork too, which provides map support: [this][3]
 
+and the full [package hierarchy][3]
+  
+please be careful in compile time:  
+all these forks use the new support library with map support - it means you have include this as your library!  
+because this, also roboguice has been recompiled using this library  
+and actionbarsherlock_mapscompatibility too! 
+and, obviously, roboguice-sherlock_maps-compatibility-support (this one you're reading about)  
+
+however, you can find all these libraries in "libs" dir.
+
+
+enjoy it!
+
+
+[1]: https://github.com/rtyley/roboguice-sherlock#roboguice-sherlock
+[2]: http://developer.android.com/tools/extras/support-library.html
+[3]: https://github.com/9re/android-support-v4-googlemaps#android-compatibility-lib--google-maps-hack
+[4]: https://docs.google.com/file/d/0B5QXIJ95NIibNWVnM0YyUHJwb0E/edit?usp=sharing
